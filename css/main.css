@@ -1,0 +1,126 @@
+main{
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  flex-grow: 1;
+}
+.start-exploring{
+  width: 145px;
+  height: 130px;
+}
+.film-icon{
+  font-size: 70px;
+  padding-bottom: 10px;
+}
+.add-movies-btn{
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+}
+.add-movies-btn *{color: var(--white);}
+
+/* ========= movies-ctr ============ */
+#movies-ctr{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 100%;
+  height: 100%;
+}
+.movie-ctr{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 10px;
+  min-height: 180px;
+  width: 390px;
+  @media(max-width: 480px){
+    min-height: unset;
+    width: 340px;
+  }
+}
+.movie-ctr *{text-align: start;}
+.movie-poster-ctr{
+  position: absolute;
+  left: 5px;
+  width: 25%;
+  height: 90%;
+  border: solid 0.1px;
+  background-color: var(--bg-light-gray);
+}
+.movie-info-ctr{
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 72%;
+}
+.movie-title-rating-ctr *, .movie-runtime-genre-ctr *{
+  font-size: 12px;
+  color: var(--white);
+}
+.movie-title-rating-ctr{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.movie-title{
+  font-size: 18px;
+  font-weight: var(--medium);
+  max-width: 80%;
+}
+.movie-title, .movie-genre{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.star-icon{
+  color: var(--gold);
+  font-size: 14px;
+}
+.movie-runtime-genre-ctr{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  @media(max-width: 480px){gap: 3px;}
+}
+.movie-runtime{flex-basis: 20%;}
+.movie-genre{flex-basis: 42%;}
+.add-to-watchlist-btn, .remove-from-watchlist-btn{
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border: solid 1px;
+  border-radius: 5px;
+}
+.add-to-watchlist-btn:hover, .remove-from-watchlist-btn:hover{
+  background-color: var(--bg-light-gray);
+}
+.add-to-watchlist-btn *, .remove-from-watchlist-btn *{pointer-events: none;}
+.add-to-watchlist-btn i, .remove-from-watchlist-btn i{font-size: 14px;}
+.movie-plot{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.movie-hr{
+  width: 96%;
+  border: solid 0.1px;
+  position: absolute;
+  top: 0;
+}
+

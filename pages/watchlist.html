@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap">
+  <!-- App -->
+	<title>Find Movie</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/header.css">
+	<link rel="stylesheet" href="../css/main.css">
+	<script defer src="../js/watchlist.js" type="module"></script>
+</head>
+
+
+<body>
+  <div id="app-ctr">
+
+
+    <header>
+      <img style="opacity: 0.5;" class="bg-img" src="../images/bg-img.jpg" alt="bg-img">
+      <h1 id="page-name"><strong>My Watchlist</strong></h1>
+      <a id="other-page" href="../index.html">Search for movies</a>
+    </header>
+
+
+    <main>
+      <p>Your watchlist is looking a little empty...</p>
+      <button class="add-movies-btn" onclick="window.location.href = '../index.html'">
+        <i class="fa-solid fa-circle-plus circle-plus-icon"></i>
+        <p>Let's add some movies!</p>
+      </button>
+    </main>
+
+
+  </div>
+</body>
+</html>
