@@ -21,7 +21,7 @@ function renderBtnAnimation(btn, action){
 
 async function SearchForMovies(movieName){
   try{
-    const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(movieName)}`);
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(movieName)}`);
     if(!response.ok)
       throw new Error(`HTTP error! Status: ${response.status}`);
     const movieData = await response.json();
