@@ -39,12 +39,12 @@ main{
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  padding: 10px;
+  padding: 6px;
   min-height: 180px;
   width: 390px;
   @media(max-width: 480px){
-    min-height: unset;
-    width: 340px;
+    min-height: 155px;
+    width: 345px;
   }
 }
 .movie-ctr *{text-align: start;}
@@ -52,7 +52,7 @@ main{
   position: absolute;
   left: 5px;
   width: 25%;
-  height: 90%;
+  height: 92%;
   border: solid 0.1px;
   background-color: var(--bg-light-gray);
 }
@@ -118,7 +118,7 @@ main{
   text-overflow: ellipsis;
 }
 .movie-hr{
-  width: 96%;
+  width: 100%;
   border: solid 0.1px;
   position: absolute;
   top: 0;
