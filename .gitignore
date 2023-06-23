@@ -1,4 +1,4 @@
 note.txt
 node_modules/
-public/
 build/
+dist/

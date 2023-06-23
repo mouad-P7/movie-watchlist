@@ -1,6 +1,13 @@
-import {defineConfig} from 'vite'
+import { defineConfig } from 'vite';
 
 
 export default defineConfig({
-	plugins: []	
-})
+  build: {
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        page1: './pages/watchlist.html',
+      },
+    },
+  },
+});
