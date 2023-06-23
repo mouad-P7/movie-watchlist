@@ -44,17 +44,32 @@ async function displayMovies(moviesArray, source){
   const moviesCtr = document.getElementById('movies-ctr');
   moviesCtr.style.zIndex = '-1';
   try{
-    for(const [i, movie] of moviesArray.entries()){
-      const response = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`);
-      const movieData = await response.json();
-      if(movieData.Response === "True")
-        moviesCtr.innerHTML += getMovieHtml(movieData, source);
-    }
-    for(const [i, movie] of moviesArray.entries()){
-      let addBtn = document.getElementsByClassName('add-to-watchlist-btn')[i];
-      if(!addBtn) continue;
-      addBtn.addEventListener('click', e => addToWatchlistEvent(e, movie));
-    }
+    if(source === 'api'){
+      let moviesDataArray = [];
+      for(const movie of moviesArray){
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`);
+        const movieData = await response.json();
+        if(movieData.Response === "True"){
+          moviesCtr.innerHTML += getMovieHtml(movieData, source);
+          moviesDataArray.push(movieData);
+        }
+      }
+      for(const [i, movie] of moviesDataArray.entries()){
+        let addBtn = document.getElementsByClassName('add-to-watchlist-btn')[i];
+        if(!addBtn) continue;
+        addBtn.addEventListener('click', e => addToWatchlistEvent(e, movie));
+      }
+    }else if(source === 'localStorage'){
+      for(const movie of moviesArray)
+        moviesCtr.innerHTML += getMovieHtml(movie, source);
+      for(const [i, movie] of moviesArray.entries()){
+        let removeBtn = document.getElementsByClassName('remove-from-watchlist-btn')[i];
+        if(!removeBtn) continue;
+        removeBtn.addEventListener('click', e => 
+          removeFromWatchListEvent(e, movie));
+      }
+    }else 
+      console.error('source: api or localStorage ??');
   }catch(error){
     console.error(error);
   }finally{
@@ -68,7 +83,7 @@ function getMovieHtml(movie, source){
   if(source === 'api'){
     let disabled = '';
     const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
-    if(watchlist.some(item => item.Title == movie.Title))
+    if(watchlist.some(item => item.imdbID == movie.imdbID))
       disabled = 'disabled';
     btnEl = 
       `<button ${disabled} class="add-to-watchlist-btn">
@@ -86,7 +101,7 @@ function getMovieHtml(movie, source){
   else
     console.error('generateMovieHtml source error');
   return(
-    `<div class="movie-ctr" data-title="${movie.Title}">
+    `<div class="movie-ctr" id="${movie.imdbID}">
       <div class="movie-poster-ctr">
         <img class="movie-poster bg-img" src="${movie.Poster}" alt="poster">
       </div>
@@ -115,17 +130,23 @@ function addToWatchlistEvent(event, movie){
   if(!watchlist.some(item => item.imdbID === movie.imdbID)){
     watchlist.unshift(movie);
     localStorage.setItem('watchlist', JSON.stringify(watchlist));
-    console.log('movie added \n' + movie)
   }
-  console.log('movie not added \n' + movie)
 };
 
 
 function removeFromWatchListEvent(event, movie){
-  console.log(event.target);
-  const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
-  for(let item of watchlist){
-    console.log(item);
+  const movieId = event.target.parentNode.parentNode.parentNode.id;
+  let watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+  watchlist = watchlist.filter(item => item.imdbID !== movie.imdbID);
+  localStorage.setItem('watchlist', JSON.stringify(watchlist));
+  document.getElementById(movieId).remove();
+  if(watchlist.length === 0){
+    mainEl.innerHTML = 
+      `<p>Your watchlist is looking a little empty...</p>
+      <button class="add-movies-btn" onclick="window.location.href = '../index.html'">
+        <i class="fa-solid fa-circle-plus circle-plus-icon"></i>
+        <p>Let's add some movies!</p>
+      </button>`;
   }
 };
 

@@ -4,7 +4,6 @@ import { renderBtnAnimation, SearchForMovies } from "./utils";
 const searchBtn = document.getElementById('search-btn');
 
 
-// localStorage.removeItem('watchlist');
 document.getElementById('search-form').addEventListener('submit', async e => {
   e.preventDefault();
   renderBtnAnimation(searchBtn, 'add');
